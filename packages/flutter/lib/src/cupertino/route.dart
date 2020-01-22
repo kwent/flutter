@@ -38,7 +38,7 @@ const Duration _kModalPopupTransitionDuration = Duration(milliseconds: 335);
 
 // Offset from offscreen to the right to fully on screen.
 final Animatable<Offset> _kRightMiddleTween = Tween<Offset>(
-  begin: const Offset(1.0, 0.0),
+  begin: const Offset(-1.0, 0.0),
   end: Offset.zero,
 );
 
@@ -537,9 +537,9 @@ class _CupertinoBackGestureDetectorState<T> extends State<_CupertinoBackGestureD
   double _convertToLogical(double value) {
     switch (Directionality.of(context)) {
       case TextDirection.rtl:
-        return -value;
-      case TextDirection.ltr:
         return value;
+      case TextDirection.ltr:
+        return -value;
     }
     return null;
   }
@@ -558,7 +558,7 @@ class _CupertinoBackGestureDetectorState<T> extends State<_CupertinoBackGestureD
       children: <Widget>[
         widget.child,
         PositionedDirectional(
-          start: 0.0,
+          start: MediaQuery.of(context).size.width - dragAreaWidth,
           width: dragAreaWidth,
           top: 0.0,
           bottom: 0.0,
